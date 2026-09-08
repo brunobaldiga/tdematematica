@@ -1,0 +1,211 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="tdematematica.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="25"
+                             Spacing="12">
+
+            <!-- TITULO -->
+
+            <Label Text="Desafio de Matemática"
+                   FontSize="27"
+                   HorizontalOptions="Center"/>
+
+            <Label Text="Escolha as opções e tente acertar!"
+                   FontSize="15"
+                   HorizontalOptions="Center"/>
+
+            <Image Source="mathlogo.png"
+                   HeightRequest="85"
+                   Aspect="AspectFit"
+                   HorizontalOptions="Center"/>
+
+
+            <!-- CONFIGURAÇÃO -->
+
+            <VerticalStackLayout x:Name="configuracao"
+                                 Spacing="12">
+
+                <Label Text="1 - Escolha as operações"
+                       FontSize="19"/>
+
+                <Grid ColumnDefinitions="*,*"
+                      RowDefinitions="Auto,Auto">
+
+                    <HorizontalStackLayout Grid.Row="0"
+                                           Grid.Column="0">
+                        <CheckBox x:Name="adicao"
+                                  IsChecked="True"/>
+                        <Label Text="Adição"
+                               VerticalOptions="Center"/>
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout Grid.Row="0"
+                                           Grid.Column="1">
+                        <CheckBox x:Name="subtracao"
+                                  IsChecked="True"/>
+                        <Label Text="Subtração"
+                               VerticalOptions="Center"/>
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout Grid.Row="1"
+                                           Grid.Column="0">
+                        <CheckBox x:Name="multiplicacao"
+                                  IsChecked="True"/>
+                        <Label Text="Multiplicação"
+                               VerticalOptions="Center"/>
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout Grid.Row="1"
+                                           Grid.Column="1">
+                        <CheckBox x:Name="divisao"
+                                  IsChecked="True"/>
+                        <Label Text="Divisão"
+                               VerticalOptions="Center"/>
+                    </HorizontalStackLayout>
+
+                </Grid>
+
+
+                <Label Text="2 - Escolha a dificuldade"
+                       FontSize="19"
+                       Margin="0,8,0,0"/>
+
+                <Picker x:Name="dificuldade"
+                        Title="Clique para escolher"/>
+
+
+                <Button Text="COMEÇAR"
+                        Clicked="iniciarJogo"
+                        HorizontalOptions="Center"
+                        WidthRequest="180"/>
+
+            </VerticalStackLayout>
+
+
+            <!-- PARTE DO JOGO -->
+
+            <VerticalStackLayout x:Name="jogo"
+                                 IsVisible="False"
+                                 Spacing="12">
+
+                <Label x:Name="numeroQuestao"
+                       Text="Questão 1 de 10"
+                       FontSize="18"
+                       HorizontalOptions="Center"/>
+
+                <ProgressBar x:Name="progressoQuestoes"
+                             Progress="0"
+                             ProgressColor="Blue"/>
+
+
+                <Label Text="Resolva:"
+                       FontSize="18"
+                       HorizontalOptions="Center"/>
+
+
+                <!-- CONTA -->
+
+                <Grid ColumnDefinitions="*,Auto,*"
+                      HorizontalOptions="Center"
+                      ColumnSpacing="15">
+
+                    <Label x:Name="numero1"
+                           Grid.Column="0"
+                           Text="5"
+                           FontSize="38"
+                           HorizontalOptions="Center"/>
+
+                    <Label x:Name="operacao"
+                           Grid.Column="1"
+                           Text="+"
+                           FontSize="38"
+                           HorizontalOptions="Center"/>
+
+                    <Label x:Name="numero2"
+                           Grid.Column="2"
+                           Text="5"
+                           FontSize="38"
+                           HorizontalOptions="Center"/>
+
+                </Grid>
+
+
+                <!-- TEMPO -->
+
+                <Label x:Name="tempo"
+                       Text="Tempo: 30 segundos"
+                       FontSize="17"
+                       HorizontalOptions="Center"
+                       TextColor="Green"/>
+
+                <ProgressBar x:Name="progressoTempo"
+                             Progress="1"
+                             ProgressColor="Green"/>
+
+
+                <!-- RESPOSTA -->
+
+                <Grid ColumnDefinitions="*,Auto"
+                      ColumnSpacing="8">
+
+                    <Entry x:Name="resposta"
+                           Grid.Column="0"
+                           Placeholder="Sua resposta"
+                           Keyboard="Numeric"
+                           TextChanged="mudouResposta"/>
+
+                    <Button x:Name="botaoResponder"
+                            Grid.Column="1"
+                            Text="OK"
+                            WidthRequest="70"
+                            Clicked="conferirResposta"/>
+
+                </Grid>
+
+
+                <Label x:Name="mensagem"
+                       Text=""
+                       FontSize="17"
+                       HorizontalOptions="Center"/>
+
+                <Image x:Name="imagemResultado"
+                       Source="question.png"
+                       HeightRequest="70"
+                       Aspect="AspectFit"
+                       HorizontalOptions="Center"/>
+
+
+                <!-- PONTUAÇÃO -->
+
+                <Label x:Name="pontos"
+                       Text="Pontos: 0"
+                       FontSize="21"
+                       HorizontalOptions="Center"/>
+
+                <Grid ColumnDefinitions="*,*"
+                      HorizontalOptions="Center"
+                      ColumnSpacing="40">
+
+                    <Label x:Name="acertos"
+                           Grid.Column="0"
+                           Text="Acertos: 0"
+                           FontSize="17"
+                           TextColor="Green"/>
+
+                    <Label x:Name="erros"
+                           Grid.Column="1"
+                           Text="Erros: 0"
+                           FontSize="17"
+                           TextColor="Red"/>
+
+                </Grid>
+
+            </VerticalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
